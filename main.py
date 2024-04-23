@@ -12,19 +12,19 @@ def index():
 
 @app.get('/send-email/asynchronous')
 async def send_email_asynchronous():
-    await send_email_async('Hello World', 'someemail@gmail.com', {
+    await send_email_async('Hello World', 'gpttest1988@gmail.com', {
         'title': 'Hello World',
         'name': 'John Doe'
     })
     return 'Success'
 
-
 @app.get('/send-email/backgroundtasks')
 def send_email_backgroundtasks(background_tasks: BackgroundTasks):
-    send_email_background(background_tasks, 'Hello World', 'someemail@gmail.com', {
-        'title': 'Hello World',
-        'name': 'John Doe'
-    })
+    send_email_background(background_tasks,
+                          'Регистрация на сайте shukay.by',
+                          'gpttest1988@gmail.com',
+                          body='Приветствую вас. Вы получили это электронное письмо, поскольку указали свою электронную почту при регистрации на сайте shukay.by <br> Если это не вы, пожалуйста свяжитесь со службой поддержки сайта shukay.by@gmail.com'
+    )
     return 'Success'
 
 

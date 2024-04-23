@@ -8,12 +8,12 @@ load_dotenv('.env')
 
 
 class Envs:
-    MAIL_USERNAME = 'olegpustovalov220@gmail.com'
-    MAIL_PASSWORD = 'iqzu cake sfwf hllj'
-    MAIL_FROM = 'olegpustovalov220@gmail.com'
+    MAIL_USERNAME = 'shukay.by@gmail.com'
+    MAIL_PASSWORD = 'dexk ohge anvu lnwt'
+    MAIL_FROM = 'shukay.by@gmail.com'
     MAIL_PORT = 587
     MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_FROM_NAME = os.getenv('MAIN_FROM_NAME')
+    MAIL_FROM_NAME = 'Shukay'
 
 
 conf = ConnectionConfig(
@@ -58,9 +58,20 @@ async def send_email_async(subject: str, email_to: str, body: dict):
 
 
 import json
+import html
+def send_email_background(background_tasks: BackgroundTasks, subject: str, email_to: str, body: str):
+    # body_str = html.unescape(body)  # Serialize the dictionary to a string
+    body_str = """
+    <html>
+    <body>
+    <h1>Приветствую вас!</h1>
+    <h3>Вы получили это письмо, потому что зарегистрировались на нашем сайте - shukay.by</h3>
+    <h3><font color="red">Если это не вы,</font> пожалуйста свяжитесь со службой поддержки сайта - shukay.by@gmail.com</h3>
+    <h2>Спасибо за регистрацию!</h2>
+    </body>
+    </html>
+    """
 
-def send_email_background(background_tasks: BackgroundTasks, subject: str, email_to: str, body: dict):
-    body_str = json.dumps(body)  # Serialize the dictionary to a string
     message = MessageSchema(
         subject=subject,
         recipients=[email_to],
