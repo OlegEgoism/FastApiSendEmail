@@ -22,7 +22,7 @@ conf = ConnectionConfig(
 def send_email_background(background_tasks: BackgroundTasks):
     message = MessageSchema(
         subject='Тестовое сообщение',
-        recipients=['olegpustovalov220@gmail.com'],
+        recipients=[''], # Укажите почту кому отправляем
         body='Вы получили это тестовое сообщение',
         subtype='html',
     )
